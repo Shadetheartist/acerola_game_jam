@@ -1,0 +1,164 @@
+[gd_scene load_steps=20 format=3 uid="uid://ddlwccesokx26"]
+
+[ext_resource type="Script" path="res://Background.gd" id="1_kuc8t"]
+[ext_resource type="PackedScene" uid="uid://cylfpfqlawahn" path="res://assets/abberation.blend" id="2_4ugqt"]
+[ext_resource type="PackedScene" uid="uid://xwocnbi4w088" path="res://assets/land.blend" id="4_y8ei4"]
+[ext_resource type="PackedScene" uid="uid://b80cjwhbkyso7" path="res://item_spawner.tscn" id="5_5yt1e"]
+[ext_resource type="Shader" path="res://sparkes.gdshader" id="5_v8pku"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ppmfm"]
+sky_top_color = Color(0.27451, 0.329412, 0.407843, 1)
+sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_lqv1k"]
+sky_material = SubResource("ProceduralSkyMaterial_ppmfm")
+
+[sub_resource type="Environment" id="Environment_e1y77"]
+background_mode = 2
+sky = SubResource("Sky_lqv1k")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.82
+fog_light_energy = 0.04
+fog_density = 0.0155
+volumetric_fog_density = 0.0609
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ioqex"]
+size = Vector2(2, 2)
+
+[sub_resource type="Shader" id="Shader_ssxbg"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mul,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,shadows_disabled,alpha_to_coverage;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float alpha_scissor_threshold;
+uniform float alpha_antialiasing_edge;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+uniform float cloud_speed : hint_range(0,1);
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,vec2(TIME*cloud_speed, TIME*cloud_speed) + base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
+	ALPHA_ANTIALIASING_EDGE = alpha_antialiasing_edge;
+	ALPHA_TEXTURE_COORDINATE = UV * vec2(albedo_texture_size);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_bm0r2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.402685)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r1ejk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_10tbg"]
+seamless = true
+color_ramp = SubResource("Gradient_bm0r2")
+noise = SubResource("FastNoiseLite_r1ejk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4m17p"]
+render_priority = 0
+shader = SubResource("Shader_ssxbg")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/alpha_scissor_threshold = 0.085
+shader_parameter/alpha_antialiasing_edge = 0.54
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/cloud_speed = 0.011
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_10tbg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_luvhl"]
+size = Vector2(2, 2)
+
+[sub_resource type="Gradient" id="Gradient_ueo8y"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0838926)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_13t81"]
+noise_type = 3
+frequency = 0.5644
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8dk5f"]
+color_ramp = SubResource("Gradient_ueo8y")
+noise = SubResource("FastNoiseLite_13t81")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgkg6"]
+render_priority = 0
+shader = ExtResource("5_v8pku")
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_8dk5f")
+
+[node name="Background" type="Node3D"]
+script = ExtResource("1_kuc8t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.821966, -0.0428816, -0.56792, -0.240787, 0.929826, 0.278289, 0.516134, 0.365491, -0.774611, -1.18132, 7.00147, -0.480732)
+shadow_enabled = true
+shadow_normal_bias = 0.29
+directional_shadow_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.969011, -0.0880757, 0.230781, -0.0375386, 0.870916, 0.489997, -0.244147, -0.483476, 0.840621, 1.30844, 5.26158, 4.43989)
+environment = SubResource("Environment_e1y77")
+v_offset = -1.03
+fov = 66.1
+
+[node name="abberation" parent="." instance=ExtResource("2_4ugqt")]
+transform = Transform3D(0.417911, 6.27855e-05, 0.0016771, 0.00050929, 0.393191, -0.14161, -0.00159938, 0.141611, 0.393187, -0.00101453, 1.72228, -1.63206)
+
+[node name="land" parent="." instance=ExtResource("4_y8ei4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0600691, 0)
+
+[node name="CloudCover" type="MeshInstance3D" parent="."]
+transform = Transform3D(37.2348, 0, 0, 0, 4.88276e-06, 37.2348, 0, -37.2348, 4.88276e-06, -8.84609, 7.4574, -18.6037)
+cast_shadow = 3
+mesh = SubResource("QuadMesh_ioqex")
+surface_material_override/0 = SubResource("ShaderMaterial_4m17p")
+
+[node name="Sparkies" type="MeshInstance3D" parent="."]
+transform = Transform3D(77.2143, 0, 0, 0, 40.3426, 38.731, 0, -27.9647, 55.8742, -21.0245, -6.45119, -33.8881)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_luvhl")
+surface_material_override/0 = SubResource("ShaderMaterial_fgkg6")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("5_5yt1e")]
+transform = Transform3D(0.841171, 0, 0.540769, 0, 1, 0, -0.540769, 0, 0.841171, -2.19391, 5.52942, 0.990156)
+
+[node name="ItemSpawner2" parent="." instance=ExtResource("5_5yt1e")]
+transform = Transform3D(0.991241, 0, -0.132066, 0, 1, 0, 0.132066, 0, 0.991241, 2.85893, 5.4472, 0)

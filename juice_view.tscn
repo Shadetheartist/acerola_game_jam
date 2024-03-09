@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://blbuvcprp33i"]
+
+[ext_resource type="Script" path="res://juice_view.gd" id="1_56x40"]
+[ext_resource type="PackedScene" uid="uid://cdgwvyfvgyrhf" path="res://assets/can.glb" id="1_ut8hl"]
+
+[sub_resource type="Environment" id="Environment_pl418"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="JuiceView" type="Node3D"]
+script = ExtResource("1_56x40")
+
+[node name="can" parent="." instance=ExtResource("1_ut8hl")]
+transform = Transform3D(0.111157, 0, -0.993803, 0, 1, 0, 0.993803, 0, 0.111157, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.786602, 2.22431, 1.6677)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+environment = SubResource("Environment_pl418")
+fov = 38.2

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdm5jwm47d1y7"]
+
+[ext_resource type="Texture2D" uid="uid://cscflrxnkofpt" path="res://assets/images/ascend.jpg" id="1_l7bad"]
+[ext_resource type="Script" path="res://shop_item.gd" id="1_thyup"]
+[ext_resource type="Texture2D" uid="uid://drkunk3i566eb" path="res://assets/images/ascend_click.jpg" id="2_df5vc"]
+[ext_resource type="Texture2D" uid="uid://cdfl08buu1mvf" path="res://assets/images/ascend_hover.jpg" id="3_r25h0"]
+[ext_resource type="Texture2D" uid="uid://dfgjc4aocuv8k" path="res://assets/images/coin.png" id="4_m4def"]
+[ext_resource type="Texture2D" uid="uid://c625v37m48i67" path="res://assets/images/ruby.png" id="5_cipfh"]
+[ext_resource type="Texture2D" uid="uid://ceev1dhj6vu4e" path="res://assets/images/juice.png" id="6_oml3f"]
+
+[node name="ShopItem" type="HBoxContainer"]
+script = ExtResource("1_thyup")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+texture_normal = ExtResource("1_l7bad")
+texture_pressed = ExtResource("2_df5vc")
+texture_hover = ExtResource("3_r25h0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ItemLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CoinCost" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/CoinCost"]
+layout_mode = 2
+texture = ExtResource("4_m4def")
+stretch_mode = 3
+
+[node name="CoinCostLabel" type="Label" parent="VBoxContainer/HBoxContainer/CoinCost"]
+layout_mode = 2
+text = "x10"
+horizontal_alignment = 1
+
+[node name="RubyCost" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/RubyCost"]
+layout_mode = 2
+texture = ExtResource("5_cipfh")
+
+[node name="RubyCostLabel" type="Label" parent="VBoxContainer/HBoxContainer/RubyCost"]
+layout_mode = 2
+text = "x10"
+horizontal_alignment = 1
+
+[node name="JuiceCost" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/JuiceCost"]
+layout_mode = 2
+texture = ExtResource("6_oml3f")
+
+[node name="JuiceCostLabel" type="Label" parent="VBoxContainer/HBoxContainer/JuiceCost"]
+layout_mode = 2
+text = "x10"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

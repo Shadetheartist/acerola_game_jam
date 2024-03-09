@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwq0wdmjnlunm"]
+
+[ext_resource type="Script" path="res://opponent_view.gd" id="1_2vwcu"]
+[ext_resource type="PackedScene" uid="uid://clp7eg5y3y3v0" path="res://assets/opponent.blend" id="1_j1qyr"]
+
+[sub_resource type="Environment" id="Environment_5syrh"]
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[node name="OpponentView" type="Node3D"]
+script = ExtResource("1_2vwcu")
+
+[node name="opponent" parent="." instance=ExtResource("1_j1qyr")]
+transform = Transform3D(-0.444714, 0, -0.895673, 0, 1, 0, 0.895673, 0, -0.444714, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.880063, -0.474857, 0, 0.474857, 0.880063, -0.00566387, -0.189969, 3.92811)
+environment = SubResource("Environment_5syrh")
+fov = 47.3
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.793236, -0.20879, 0.571999, 1.49012e-08, 0.939376, 0.342889, -0.608914, -0.271992, 0.745147, 3.21973, 4.05801, 3.43579)
+light_color = Color(0, 0.658824, 0.905882, 1)
+light_energy = 16.0
+light_size = 0.15
+light_specular = 0.749
+spot_range = 7.89294
+spot_angle = 21.318
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.274, 1.772, 0.723)
+light_color = Color(0.262745, 0.254902, 0, 1)
+light_energy = 2.326
+light_size = 0.446
+light_specular = 0.421
+omni_range = 6.70745
+
+[node name="LookTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59064, 0)

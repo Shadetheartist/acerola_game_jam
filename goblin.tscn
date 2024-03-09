@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qwar2xwqtrj"]
+
+[ext_resource type="PackedScene" uid="uid://dymcsndq8uqxy" path="res://assets/goblin_head.glb" id="1_qnkyg"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="goblin_head" parent="." instance=ExtResource("1_qnkyg")]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt8iulkh2ygkb"]
+
+[ext_resource type="Script" path="res://graph_node.gd" id="1_mtuck"]
+[ext_resource type="Texture2D" uid="uid://bff8so6fsum78" path="res://assets/node_circle.png" id="1_xg40h"]
+[ext_resource type="Shader" path="res://graph_node.gdshader" id="2_e6htj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abdl5"]
+resource_local_to_scene = true
+shader = ExtResource("2_e6htj")
+shader_parameter/color = Vector4(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cyyqc"]
+radius = 101.079
+
+[node name="GraphNode" type="Node2D"]
+script = ExtResource("1_mtuck")
+
+[node name="Circle" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_abdl5")
+scale = Vector2(0.57, 0.57)
+texture = ExtResource("1_xg40h")
+
+[node name="Area2D" type="Area2D" parent="Circle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle/Area2D"]
+shape = SubResource("CircleShape2D_cyyqc")
+
+[node name="ResourceSprite" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(1.5, 1.5)
+
+[connection signal="input_event" from="Circle/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Circle/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Circle/Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4k2abxndxfe8"]
+
+[ext_resource type="Script" path="res://RubyView.gd" id="1_i7lbn"]
+[ext_resource type="PackedScene" uid="uid://ctq0ip2c2u840" path="res://assets/ruby.blend" id="2_0sfog"]
+
+[sub_resource type="Environment" id="Environment_46r07"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.65
+
+[node name="RubyView" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_i7lbn")
+
+[node name="ruby" parent="." instance=ExtResource("2_0sfog")]
+transform = Transform3D(1, 0, 0, 0, 0.948694, 0.316196, 0, -0.316196, 0.948694, 0, -0.135092, 0.0921589)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8457, -1.2439e-07)
+environment = SubResource("Environment_46r07")
+fov = 50.8
+size = 1.503
+near = 0.001
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.300953, 1.62883, -0.319499)
+light_energy = 1.332
+light_size = 0.166
+light_specular = 11.526
+omni_range = 2.92158
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.518957, -0.246699, 1.67404)
+light_size = 0.197
+omni_range = 3.12881

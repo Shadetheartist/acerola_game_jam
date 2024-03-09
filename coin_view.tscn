@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bukoy1s0opvt5"]
+
+[ext_resource type="Script" path="res://CoinView.gd" id="1_n2ubv"]
+[ext_resource type="PackedScene" uid="uid://bwi2qijb48jaw" path="res://assets/coin.blend" id="2_j6h28"]
+
+[sub_resource type="Environment" id="Environment_5ly8w"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 5.83
+
+[node name="CoinView" type="Node3D"]
+script = ExtResource("1_n2ubv")
+
+[node name="coin" parent="." instance=ExtResource("2_j6h28")]
+transform = Transform3D(1, 0, 0, 0, 0.0260902, -0.999659, 0, 0.999659, 0.0260902, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1133)
+environment = SubResource("Environment_5ly8w")
+fov = 89.5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04442, -2.01133, 0.653282)
+light_size = 0.176
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.867463, 0.188016, 1.91963)
+light_size = 0.176
