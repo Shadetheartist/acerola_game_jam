@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dt8iulkh2ygkb"]
 
-[ext_resource type="Script" path="res://graph_node.gd" id="1_mtuck"]
+[ext_resource type="Script" path="res://scenes/graph/graph_node/graph_node.gd" id="1_mtuck"]
 [ext_resource type="Texture2D" uid="uid://bff8so6fsum78" path="res://assets/node_circle.png" id="1_xg40h"]
-[ext_resource type="Shader" path="res://graph_node.gdshader" id="2_e6htj"]
+[ext_resource type="Shader" path="res://scenes/graph/graph_node/graph_node.gdshader" id="2_e6htj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_abdl5"]
 resource_local_to_scene = true

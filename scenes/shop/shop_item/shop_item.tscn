@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdm5jwm47d1y7"]
 
 [ext_resource type="Texture2D" uid="uid://cscflrxnkofpt" path="res://assets/images/ascend.jpg" id="1_l7bad"]
-[ext_resource type="Script" path="res://shop_item.gd" id="1_thyup"]
+[ext_resource type="Script" path="res://scenes/shop/shop_item/shop_item.gd" id="1_thyup"]
 [ext_resource type="Texture2D" uid="uid://drkunk3i566eb" path="res://assets/images/ascend_click.jpg" id="2_df5vc"]
 [ext_resource type="Texture2D" uid="uid://cdfl08buu1mvf" path="res://assets/images/ascend_hover.jpg" id="3_r25h0"]
 [ext_resource type="Texture2D" uid="uid://dfgjc4aocuv8k" path="res://assets/images/coin.png" id="4_m4def"]

@@ -11,7 +11,7 @@ var item_spawner: Node
 
 signal player_clicked(node)
 
-var graph_node_scene = preload("res://graph_node.tscn")
+var graph_node_scene = preload("res://scenes/graph/graph_node/graph_node.tscn")
 var distance = 150;
 var current_focus = null
 var current_depth: int = 0

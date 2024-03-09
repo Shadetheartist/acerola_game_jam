@@ -1,8 +1,8 @@
 extends Node3D
 
-var coin_scene = preload("res://coin_item.tscn")
-var ruby_scene = preload("res://ruby_item.tscn")
-var juice_scene = preload("res://juice_item.tscn")
+var coin_scene = preload("res://scenes/resources/coin/item/coin_item.tscn")
+var ruby_scene = preload("res://scenes/resources/ruby/item/ruby_item.tscn")
+var juice_scene = preload("res://scenes/resources/juice/item/juice_item.tscn")
 
 var spawn_queue = []
 

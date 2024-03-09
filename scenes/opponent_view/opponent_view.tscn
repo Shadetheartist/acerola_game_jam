@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwq0wdmjnlunm"]
 
-[ext_resource type="Script" path="res://opponent_view.gd" id="1_2vwcu"]
+[ext_resource type="Script" path="res://scenes/opponent_view/opponent_view.gd" id="1_2vwcu"]
 [ext_resource type="PackedScene" uid="uid://clp7eg5y3y3v0" path="res://assets/opponent.blend" id="1_j1qyr"]
 
 [sub_resource type="Environment" id="Environment_5syrh"]

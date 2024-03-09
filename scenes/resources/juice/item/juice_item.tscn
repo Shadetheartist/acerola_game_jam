@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ba8v2du4c3xoe"]
 
-[ext_resource type="Script" path="res://juice_item.gd" id="1_5sdkp"]
+[ext_resource type="Script" path="res://scenes/resources/juice/item/juice_item.gd" id="1_5sdkp"]
 [ext_resource type="PackedScene" uid="uid://cdgwvyfvgyrhf" path="res://assets/can.glb" id="1_kjrov"]
 [ext_resource type="AudioStream" uid="uid://ek3vi8tcapc5" path="res://assets/audio/boink.wav" id="3_3gy46"]
 

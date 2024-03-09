@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://mmqel8bfhvuw"]
 
 [ext_resource type="PackedScene" uid="uid://ctq0ip2c2u840" path="res://assets/ruby.blend" id="1_swaoi"]
-[ext_resource type="Script" path="res://ruby_item.gd" id="1_virmo"]
+[ext_resource type="Script" path="res://scenes/resources/ruby/item/ruby_item.gd" id="1_virmo"]
 [ext_resource type="AudioStream" uid="uid://b0nkbqfmeayi0" path="res://assets/audio/ting.wav" id="3_lsgmf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hmjsr"]

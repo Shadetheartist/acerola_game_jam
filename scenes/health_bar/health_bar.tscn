@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4f3uffyh8ijc"]
 
 [ext_resource type="Texture2D" uid="uid://h3q8ldrriaoh" path="res://assets/images/heart.png" id="1_ef02j"]
-[ext_resource type="Script" path="res://health_bar.gd" id="1_u3ejn"]
+[ext_resource type="Script" path="res://scenes/health_bar/health_bar.gd" id="1_u3ejn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5tvs"]
 bg_color = Color(0.733333, 0, 0, 1)

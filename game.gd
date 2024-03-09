@@ -1,6 +1,6 @@
 extends Node2D
 
-var opponent_view_scene = preload("res://opponent_view.tscn")
+var opponent_view_scene = preload("res://scenes/opponent_view/opponent_view.tscn")
 
 var viewport_initial_size = Vector2()
 @onready var viewport = $SubViewport

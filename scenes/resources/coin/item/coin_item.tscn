@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cc3c6bhohc2ls"]
 
 [ext_resource type="PackedScene" uid="uid://bwi2qijb48jaw" path="res://assets/coin.blend" id="1_47w5c"]
-[ext_resource type="Script" path="res://coin_item.gd" id="1_eegs7"]
+[ext_resource type="Script" path="res://scenes/resources/coin/item/coin_item.gd" id="1_eegs7"]
 [ext_resource type="AudioStream" uid="uid://dxhtom7iwu801" path="res://assets/audio/tink/tink.wav" id="3_nqx3v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cms05"]

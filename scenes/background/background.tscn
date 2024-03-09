@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://ddlwccesokx26"]
 
-[ext_resource type="Script" path="res://Background.gd" id="1_kuc8t"]
+[ext_resource type="Script" path="res://scenes/background/Background.gd" id="1_kuc8t"]
 [ext_resource type="PackedScene" uid="uid://cylfpfqlawahn" path="res://assets/abberation.blend" id="2_4ugqt"]
 [ext_resource type="PackedScene" uid="uid://xwocnbi4w088" path="res://assets/land.blend" id="4_y8ei4"]
-[ext_resource type="PackedScene" uid="uid://b80cjwhbkyso7" path="res://item_spawner.tscn" id="5_5yt1e"]
-[ext_resource type="Shader" path="res://sparkes.gdshader" id="5_v8pku"]
+[ext_resource type="PackedScene" uid="uid://b80cjwhbkyso7" path="res://scenes/item_spawner/item_spawner.tscn" id="5_5yt1e"]
+[ext_resource type="Shader" path="res://scenes/background/sparkes.gdshader" id="5_v8pku"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ppmfm"]
 sky_top_color = Color(0.27451, 0.329412, 0.407843, 1)

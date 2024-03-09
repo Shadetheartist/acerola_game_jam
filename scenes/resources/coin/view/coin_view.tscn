@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bukoy1s0opvt5"]
 
-[ext_resource type="Script" path="res://CoinView.gd" id="1_n2ubv"]
+[ext_resource type="Script" path="res://scenes/resources/coin/view/CoinView.gd" id="1_n2ubv"]
 [ext_resource type="PackedScene" uid="uid://bwi2qijb48jaw" path="res://assets/coin.blend" id="2_j6h28"]
 
 [sub_resource type="Environment" id="Environment_5ly8w"]

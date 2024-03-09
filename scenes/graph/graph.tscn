@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdr3eydvd3vs3"]
 
-[ext_resource type="Script" path="res://graph.gd" id="1_lpdv0"]
-[ext_resource type="PackedScene" uid="uid://dt8iulkh2ygkb" path="res://graph_node.tscn" id="1_p2qe7"]
+[ext_resource type="Script" path="res://scenes/graph/graph.gd" id="1_lpdv0"]
+[ext_resource type="PackedScene" uid="uid://dt8iulkh2ygkb" path="res://scenes/graph/graph_node/graph_node.tscn" id="1_p2qe7"]
 [ext_resource type="AudioStream" uid="uid://bwnuhebhogal5" path="res://assets/audio/tack.wav" id="3_g5b1y"]
 
 [node name="Graph" type="Node2D"]
