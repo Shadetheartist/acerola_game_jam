@@ -18,8 +18,6 @@ sky_material = SubResource("ProceduralSkyMaterial_ppmfm")
 [sub_resource type="Environment" id="Environment_e1y77"]
 background_mode = 2
 sky = SubResource("Sky_lqv1k")
-ambient_light_source = 3
-ambient_light_sky_contribution = 0.82
 fog_light_energy = 0.04
 fog_density = 0.0155
 volumetric_fog_density = 0.0609
@@ -80,6 +78,8 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r1ejk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_10tbg"]
+width = 1024
+height = 1024
 seamless = true
 color_ramp = SubResource("Gradient_bm0r2")
 noise = SubResource("FastNoiseLite_r1ejk")
@@ -128,10 +128,10 @@ shader_parameter/texture_albedo = SubResource("NoiseTexture2D_8dk5f")
 script = ExtResource("1_kuc8t")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.821966, -0.0428816, -0.56792, -0.240787, 0.929826, 0.278289, 0.516134, 0.365491, -0.774611, -1.18132, 7.00147, -0.480732)
+transform = Transform3D(0.850444, -0.504389, -0.149455, -2.70084e-08, -0.284099, 0.958795, -0.526066, -0.815401, -0.24161, -2.75953, 3.4031, -0.480732)
 shadow_enabled = true
-shadow_normal_bias = 0.29
-directional_shadow_mode = 0
+shadow_normal_bias = 3.399
+directional_shadow_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.969011, -0.0880757, 0.230781, -0.0375386, 0.870916, 0.489997, -0.244147, -0.483476, 0.840621, 1.30844, 5.26158, 4.43989)
@@ -158,7 +158,7 @@ mesh = SubResource("QuadMesh_luvhl")
 surface_material_override/0 = SubResource("ShaderMaterial_fgkg6")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("5_5yt1e")]
-transform = Transform3D(0.841171, 0, 0.540769, 0, 1, 0, -0.540769, 0, 0.841171, -2.19391, 5.52942, 0.990156)
+transform = Transform3D(0.841171, 0, 0.540769, 0, 1, 0, -0.540769, 0, 0.841171, -3.05434, 5.52942, -0.348256)
 
 [node name="ItemSpawner2" parent="." instance=ExtResource("5_5yt1e")]
-transform = Transform3D(0.991241, 0, -0.132066, 0, 1, 0, 0.132066, 0, 0.991241, 2.85893, 5.4472, 0)
+transform = Transform3D(0.991241, 0, -0.132066, 0, 1, 0, 0.132066, 0, 0.991241, 2.93015, 5.4472, -0.534543)

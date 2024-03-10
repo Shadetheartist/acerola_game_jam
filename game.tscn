@@ -1,17 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://c2xajtpref4dt"]
+[gd_scene load_steps=12 format=3 uid="uid://c2xajtpref4dt"]
 
-[ext_resource type="PackedScene" uid="uid://cdr3eydvd3vs3" path="res://scenes/graph/graph.tscn" id="1_fd633"]
 [ext_resource type="Script" path="res://game.gd" id="1_nj22p"]
 [ext_resource type="PackedScene" uid="uid://ddlwccesokx26" path="res://scenes/background/background.tscn" id="3_3ay34"]
-[ext_resource type="PackedScene" uid="uid://d4k2abxndxfe8" path="res://scenes/resources/ruby/view/ruby_view.tscn" id="4_luydh"]
-[ext_resource type="PackedScene" uid="uid://blbuvcprp33i" path="res://scenes/resources/juice/view/juice_view.tscn" id="5_dqf77"]
-[ext_resource type="PackedScene" uid="uid://bukoy1s0opvt5" path="res://scenes/resources/coin/view/coin_view.tscn" id="6_3adim"]
 [ext_resource type="PackedScene" uid="uid://co8v5nc5oinwa" path="res://scenes/player/player.tscn" id="7_7alqp"]
-[ext_resource type="AudioStream" uid="uid://c0fnvtfd2p5gm" path="res://assets/audio/coin/coin-001.wav" id="8_yafpd"]
-[ext_resource type="AudioStream" uid="uid://c8ytqay2e0jay" path="res://assets/audio/ta_ting.wav" id="9_ij3or"]
-[ext_resource type="AudioStream" uid="uid://yq513vdc6wd6" path="res://assets/audio/ba_wing.wav" id="10_odul8"]
 [ext_resource type="AudioStream" uid="uid://bcnfh4dn7s4p0" path="res://assets/audio/ambience.wav" id="11_c5k3f"]
-[ext_resource type="AudioStream" uid="uid://bf5xvyarkad23" path="res://assets/audio/err.wav" id="12_gkafb"]
 [ext_resource type="PackedScene" uid="uid://cwq0wdmjnlunm" path="res://scenes/opponent_view/opponent_view.tscn" id="12_u2bam"]
 [ext_resource type="PackedScene" uid="uid://rrso6q800gux" path="res://scenes/player_view/player_view.tscn" id="13_tjwbf"]
 [ext_resource type="PackedScene" uid="uid://cmmesa7n7g57y" path="res://scenes/shop/shop.tscn" id="14_gmerh"]
@@ -30,23 +22,11 @@ viewport_path = NodePath("YouViewport")
 script = ExtResource("1_nj22p")
 
 [node name="Player" parent="." instance=ExtResource("7_7alqp")]
+position = Vector2(425, 87)
 
 [node name="Opponent" parent="." instance=ExtResource("7_7alqp")]
+position = Vector2(1556, 91)
 id = 1
-
-[node name="Graph" parent="." node_paths=PackedStringArray("player", "coin_viewport", "ruby_viewport", "juice_viewport") instance=ExtResource("1_fd633")]
-position = Vector2(469, 114)
-player = NodePath("../Player")
-coin_viewport = NodePath("../SubViewport_Coin")
-ruby_viewport = NodePath("../SubViewport_Ruby")
-juice_viewport = NodePath("../SubViewport_Juice")
-
-[node name="Graph2" parent="." node_paths=PackedStringArray("player", "coin_viewport", "ruby_viewport", "juice_viewport") instance=ExtResource("1_fd633")]
-position = Vector2(1463, 110)
-player = NodePath("../Opponent")
-coin_viewport = NodePath("../SubViewport_Coin")
-ruby_viewport = NodePath("../SubViewport_Ruby")
-juice_viewport = NodePath("../SubViewport_Juice")
 
 [node name="ViewportSprite" type="Sprite2D" parent="."]
 z_index = -1
@@ -60,49 +40,6 @@ size = Vector2i(1920, 1080)
 
 [node name="Background" parent="SubViewport" instance=ExtResource("3_3ay34")]
 
-[node name="SubViewport_Ruby" type="SubViewport" parent="."]
-own_world_3d = true
-transparent_bg = true
-size = Vector2i(64, 64)
-
-[node name="RubyView" parent="SubViewport_Ruby" instance=ExtResource("4_luydh")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 105.809, 0, 0)
-
-[node name="SubViewport_Juice" type="SubViewport" parent="."]
-own_world_3d = true
-transparent_bg = true
-size = Vector2i(64, 64)
-
-[node name="JuiceView" parent="SubViewport_Juice" instance=ExtResource("5_dqf77")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.9297, 0, 0)
-
-[node name="SubViewport_Coin" type="SubViewport" parent="."]
-own_world_3d = true
-transparent_bg = true
-size = Vector2i(64, 64)
-
-[node name="CoinView" parent="SubViewport_Coin" instance=ExtResource("6_3adim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.6555, 0, 0)
-
-[node name="CaChingPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_yafpd")
-volume_db = -13.476
-
-[node name="TaTingPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_ij3or")
-volume_db = -12.706
-
-[node name="BaWingPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_odul8")
-volume_db = -13.476
-
-[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_c5k3f")
-autoplay = true
-
-[node name="ErrPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_gkafb")
-
 [node name="OpponentSprite" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1659, 824)
@@ -111,6 +48,7 @@ texture = SubResource("ViewportTexture_i6i30")
 [node name="OpponentViewport" type="SubViewport" parent="."]
 own_world_3d = true
 transparent_bg = true
+audio_listener_enable_3d = true
 
 [node name="OpponentView" parent="OpponentViewport" instance=ExtResource("12_u2bam")]
 
@@ -131,12 +69,20 @@ player = NodePath("../Player")
 
 [node name="Shop" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_gmerh")]
 z_index = 2
-position = Vector2(82, 789)
-scale = Vector2(0.783535, 0.783535)
+position = Vector2(84, 713)
 player = NodePath("../Player")
 
 [node name="OpponentHealthBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_vvtnd")]
 position = Vector2(1858, 756)
 player = NodePath("../Opponent")
 
-[connection signal="player_clicked" from="Graph" to="." method="_on_graph_player_clicked"]
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_c5k3f")
+autoplay = true
+
+[connection signal="added_goblin" from="Player" to="." method="_on_player_added_goblin"]
+[connection signal="added_resource" from="Player" to="." method="_on_player_added_resource"]
+[connection signal="paid" from="Player" to="." method="_on_player_paid"]
+[connection signal="yeeted" from="Player" to="." method="_on_player_yeeted"]
+[connection signal="added_resource" from="Opponent" to="." method="_on_opponent_added_resource"]
+[connection signal="buy" from="Shop" to="Player" method="_on_shop_buy"]

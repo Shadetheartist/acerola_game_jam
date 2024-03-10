@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0qwar2xwqtrj"]
+[gd_scene load_steps=3 format=3 uid="uid://c0qwar2xwqtrj"]
 
+[ext_resource type="Script" path="res://scenes/item_spawner/goblin.gd" id="1_l4tu3"]
 [ext_resource type="PackedScene" uid="uid://dymcsndq8uqxy" path="res://assets/goblin_head.glb" id="1_qnkyg"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_l4tu3")
 
 [node name="goblin_head" parent="." instance=ExtResource("1_qnkyg")]

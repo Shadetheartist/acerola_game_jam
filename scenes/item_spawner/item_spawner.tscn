@@ -12,4 +12,13 @@ script = ExtResource("1_ft5wr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0420618, -4.99974, -0.053757)
 
 [node name="Goblin1" parent="." instance=ExtResource("3_7p4hc")]
-transform = Transform3D(0.468579, 0, 0, 0, 0.447335, 0.139492, 0, -0.139492, 0.447335, -0.847159, -4.5148, -1.92052)
+transform = Transform3D(0.468579, 0, 0, 0, 0.447335, 0.139492, 0, -0.139492, 0.447335, -0.965279, -4.5148, -1.92052)
+visible = false
+
+[node name="Goblin2" parent="." instance=ExtResource("3_7p4hc")]
+transform = Transform3D(0.468579, 0, 0, 0, 0.447335, 0.139492, 0, -0.139492, 0.447335, -0.0605845, -4.5148, -1.92052)
+visible = false
+
+[node name="Goblin3" parent="." instance=ExtResource("3_7p4hc")]
+transform = Transform3D(0.468579, 0, 0, 0, 0.447335, 0.139492, 0, -0.139492, 0.447335, 0.845675, -4.5148, -1.92052)
+visible = false

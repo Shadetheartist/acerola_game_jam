@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cmmesa7n7g57y"]
+[gd_scene load_steps=30 format=3 uid="uid://cmmesa7n7g57y"]
 
 [ext_resource type="Script" path="res://scenes/shop/shop.gd" id="1_o5q6q"]
 [ext_resource type="PackedScene" uid="uid://bdm5jwm47d1y7" path="res://scenes/shop/shop_item/shop_item.tscn" id="2_axhwf"]
@@ -8,16 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://ceev1dhj6vu4e" path="res://assets/images/juice.png" id="7_8pokb"]
 [ext_resource type="Texture2D" uid="uid://cdfl08buu1mvf" path="res://assets/images/ascend_hover.jpg" id="7_gdvgt"]
 [ext_resource type="Texture2D" uid="uid://drkunk3i566eb" path="res://assets/images/ascend_click.jpg" id="8_ywu6w"]
-[ext_resource type="AudioStream" uid="uid://cvwk1dk3cg3kw" path="res://assets/audio/bonk.wav" id="9_331q0"]
 [ext_resource type="Texture2D" uid="uid://c0ob2ohkje164" path="res://assets/images/goblin.jpg" id="9_oso6u"]
-[ext_resource type="AudioStream" uid="uid://b65rcqwd40prp" path="res://assets/audio/nice_la.wav" id="10_3owwi"]
 [ext_resource type="Texture2D" uid="uid://drxjh802mguu0" path="res://assets/images/goblin_hover.jpg" id="10_kiwjt"]
 [ext_resource type="Texture2D" uid="uid://cujohegqnl1hl" path="res://assets/images/goblin_click.jpg" id="11_flxvr"]
 [ext_resource type="Texture2D" uid="uid://ni715cqkli63" path="res://assets/images/icbm.jpg" id="12_nvlit"]
 [ext_resource type="Texture2D" uid="uid://cqlqvwkermvok" path="res://assets/images/icbm_hover.jpg" id="13_uhflh"]
-[ext_resource type="AudioStream" uid="uid://biicbtb8dn6oq" path="res://assets/audio/goblin.wav" id="14_7fy7g"]
 [ext_resource type="Texture2D" uid="uid://cr4aqrldcqefq" path="res://assets/images/icbm_click.jpg" id="14_hch44"]
-[ext_resource type="AudioStream" uid="uid://dq7fy21lyw5dx" path="res://assets/audio/icbm.wav" id="18_gvrky"]
+[ext_resource type="Texture2D" uid="uid://cvu7vrlwexg4q" path="res://assets/images/crypto.jpg" id="15_kgp24"]
+[ext_resource type="Texture2D" uid="uid://cob1tafmo4ncg" path="res://assets/images/crypto_hover.jpg" id="16_6yfe1"]
+[ext_resource type="Texture2D" uid="uid://b7l76makhjkmx" path="res://assets/images/crypto_click.jpg" id="17_knss6"]
+[ext_resource type="Texture2D" uid="uid://df1y5x3senb6" path="res://assets/images/bury.jpg" id="18_jbwkk"]
+[ext_resource type="Texture2D" uid="uid://c812pi63y515k" path="res://assets/images/bury_hover.jpg" id="19_h58sy"]
+[ext_resource type="Texture2D" uid="uid://bdw5y1o6lprnh" path="res://assets/images/bury_click.jpg" id="20_wmeqy"]
+[ext_resource type="Texture2D" uid="uid://tq05r3pv4k7b" path="res://assets/images/yeet.jpg" id="21_bp7ku"]
+[ext_resource type="Texture2D" uid="uid://yxickixemuha" path="res://assets/images/yeet_hover.jpg" id="22_srkcw"]
+[ext_resource type="Texture2D" uid="uid://brxrjk5p0qff0" path="res://assets/images/yeet_click.jpg" id="23_n0btr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv76q"]
 bg_color = Color(0, 0, 0, 1)
@@ -41,13 +46,14 @@ bg_color = Color(0, 0.839216, 0, 1)
 script = ExtResource("1_o5q6q")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1000.0
+offset_right = 1219.0
 offset_bottom = 351.0
 color = Color(0.313726, 0.286275, 0.505882, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+clip_contents = true
+offset_right = 1201.0
+offset_bottom = 348.0
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -75,6 +81,7 @@ show_percentage = false
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "N"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -99,6 +106,7 @@ show_percentage = false
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "N"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -124,6 +132,7 @@ show_percentage = false
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "N"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -134,15 +143,19 @@ texture = ExtResource("7_8pokb")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer2"]
 layout_mode = 2
+theme_override_constants/v_separation = 30
 columns = 3
 
 [node name="Ascend" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
 layout_mode = 2
+size_flags_horizontal = 3
 label = "Ascend 1"
+description = "+ resources, faster clicking."
 image = ExtResource("6_daqp4")
 image_hover = ExtResource("7_gdvgt")
 image_click = ExtResource("8_ywu6w")
@@ -152,7 +165,9 @@ cost_juice = 3
 
 [node name="Goblin" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
 layout_mode = 2
+size_flags_horizontal = 3
 label = "Goblin"
+description = "Occasionally steals things from your opponent (can have up to 3)"
 image = ExtResource("9_oso6u")
 image_hover = ExtResource("10_kiwjt")
 image_click = ExtResource("11_flxvr")
@@ -161,7 +176,9 @@ cost_juice = 1
 
 [node name="ICBM" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
 layout_mode = 2
+size_flags_horizontal = 3
 label = "ICBM"
+description = "RT-2PM2 <<Topol-M>> cold-launched three-stage solid-propellant silo-based intercontinental ballistic missile"
 image = ExtResource("12_nvlit")
 image_hover = ExtResource("13_uhflh")
 image_click = ExtResource("14_hch44")
@@ -169,19 +186,38 @@ cost_coin = 1
 cost_ruby = 1
 cost_juice = 1
 
-[node name="BonkPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_331q0")
+[node name="Crypto" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
+layout_mode = 2
+size_flags_horizontal = 3
+label = "Buy Crypto"
+description = "Waste some gold.  (does nothing)"
+image = ExtResource("15_kgp24")
+image_hover = ExtResource("16_6yfe1")
+image_click = ExtResource("17_knss6")
+cost_coin = 1
 
-[node name="NicePlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_3owwi")
-volume_db = -8.362
+[node name="Bury" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
+layout_mode = 2
+size_flags_horizontal = 3
+label = "Buy Crypto"
+description = "Waste a Ruby. (does nothing)"
+image = ExtResource("18_jbwkk")
+image_hover = ExtResource("19_h58sy")
+image_click = ExtResource("20_wmeqy")
+cost_coin = 1
 
-[node name="GoblinPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_7fy7g")
-
-[node name="ICBMPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_gvrky")
+[node name="Yeet" parent="HBoxContainer/MarginContainer2/GridContainer" instance=ExtResource("2_axhwf")]
+layout_mode = 2
+size_flags_horizontal = 3
+label = "Yeet"
+description = "Yeet a can of juice at your opponent."
+image = ExtResource("21_bp7ku")
+image_hover = ExtResource("22_srkcw")
+image_click = ExtResource("23_n0btr")
 
 [connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/Ascend" to="." method="_on_ascend_clicked"]
 [connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/Goblin" to="." method="_on_goblin_clicked"]
 [connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/ICBM" to="." method="_on_icbm_clicked"]
+[connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/Crypto" to="." method="_on_crypto_clicked"]
+[connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/Bury" to="." method="_on_bury_clicked"]
+[connection signal="clicked" from="HBoxContainer/MarginContainer2/GridContainer/Yeet" to="." method="_on_yeet_clicked"]

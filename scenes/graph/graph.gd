@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var player: Node
+@onready var player = get_parent()
 
 @export var coin_viewport: SubViewport
 @export var ruby_viewport: SubViewport
@@ -21,7 +21,6 @@ var current_nodes = []
 func _ready():
 	
 	current_focus = $RootNode.position
-	$RootNode.modifier_cb = func(r, m): return [r, true]
 	
 	expand($RootNode)
 	
@@ -34,23 +33,28 @@ func _process(delta):
 func focus_on_depth(g_pos):
 	current_focus = Vector2(g_pos.x * distance/2, -1 * g_pos.y * distance)
 
-func generate_name(g_pos):
-	var x = 0
-	var y = 0
+
+func bifurcate(node):
 	
-	# this looks stupid but -0 is appearing in strings and messing up find_child()
-	if abs(g_pos.x) == 0:
-		x = 0
-	else:
-		x = g_pos.x
-		
-	if abs(g_pos.y) == 0:
-		y = 0
-	else:
-		y = g_pos.y
-		
-	return "GraphNode(" + str(x) + ", " + str(y) + ")"
+	var left_result = create_child_node(node, -1)
+	var instance_left = left_result[0]
+	if left_result[1]:
+		instance_left.translate(Vector2(-distance/2, distance))
+		node.add_child(instance_left)
 	
+	var right_result = create_child_node(node, +1)
+	var instance_right = right_result[0]
+	if right_result[1]:
+		instance_right.translate(Vector2(distance/2, distance))
+		node.add_child(instance_right)
+		
+		
+	var line = Line2D.new()
+	line.add_point(Vector2(-distance/2, distance))
+	line.add_point(Vector2(0,0))
+	line.add_point(Vector2(distance/2, distance))
+	node.add_child(line)
+
 
 # returns [node, <if node is newly created>]
 func create_child_node(node, pos):
@@ -76,35 +80,57 @@ func create_child_node(node, pos):
 	instance.coin_viewport = coin_viewport
 	instance.player = player
 	
-	var operation = random_operation()
-	instance.resource_type = operation[0]
-	instance.resource_value = operation[1]
-	instance.modifier_cb = operation[2]
+	instance.resource_type = random_resource_type()
 	
 	instance.clicked.connect(_on_node_clicked)
 	return [instance, true]
 
 
-func bifurcate(node):
+func generate_name(g_pos):
+	var x = 0
+	var y = 0
 	
-	var left_result = create_child_node(node, -1)
-	var instance_left = left_result[0]
-	if left_result[1]:
-		instance_left.translate(Vector2(-distance/2, distance))
-		node.add_child(instance_left)
+	# this looks stupid but -0 is appearing in strings and messing up find_child()
+	if abs(g_pos.x) == 0:
+		x = 0
+	else:
+		x = g_pos.x
+		
+	if abs(g_pos.y) == 0:
+		y = 0
+	else:
+		y = g_pos.y
+		
+	return "GraphNode(" + str(x) + ", " + str(y) + ")"
+
+
+func expand(node):
+	current_depth += 1
 	
-	var right_result = create_child_node(node, +1)
-	var instance_right = right_result[0]
-	if right_result[1]:
-		instance_right.translate(Vector2(distance/2, distance))
-		node.add_child(instance_right)
+	bifurcate(node)
+	current_nodes = node.children
+	for child in node.children:
+		bifurcate(child)
 		
-		
-	var line = Line2D.new()
-	line.add_point(Vector2(-distance/2, distance))
-	line.add_point(Vector2(0,0))
-	line.add_point(Vector2(distance/2, distance))
-	node.add_child(line)
+	focus_on_depth(node.graph_position)
+	
+	if node.parents.size() > 0:
+		var seen = []
+		for parent in node.parents:
+			rec_graph_update(parent, seen)
+	else:
+		rec_graph_update(node)
+	
+
+func random_resource_type():
+	var random_type = randi() % 3
+
+	if random_type == 0:
+		return "coin"
+	elif random_type == 1:
+		return "ruby"
+	else:
+		return "juice"
 
 
 func rec_graph_find_by_pos(node, pos):
@@ -136,59 +162,6 @@ func shared_parent(nodes):
 			parents.append(parent)
 	
 	return null
-	
-
-func expand(node):
-	var result = node.modifier_cb.call(player.get_resources(), player.max_resources())
-	
-	if result[1]:
-		player.set_resources(result[0])
-		
-	current_depth += 1
-	
-	bifurcate(node)
-	current_nodes = node.children
-	for child in node.children:
-		bifurcate(child)
-		
-	focus_on_depth(node.graph_position)
-	
-	if node.parents.size() > 0:
-		var seen = []
-		for parent in node.parents:
-			rec_graph_update(parent, seen)
-	else:
-		rec_graph_update(node)
-		
-	return result[1]
-
-
-func random_operation():
-	var random_type = randi() % 3
-	var random_value = randi() % 1 + 1
-
-	var cb = func (current_resources, max_resources):
-		var t = random_type
-		
-		if current_resources[t] >= max_resources[t]:
-			return [current_resources, false]
-			
-		current_resources[t] += 1
-		
-		if t == 0:
-			item_spawner.spawn_coin()
-		elif t == 1:
-			item_spawner.spawn_ruby()
-		elif t == 2:
-			item_spawner.spawn_juice()
-			
-		return [current_resources, true]
-			
-	return [
-		random_type,
-		random_value,
-		cb
-	]
 
 	
 func _on_node_clicked(node):
@@ -197,12 +170,6 @@ func _on_node_clicked(node):
 		
 	if self.current_nodes.find(node) == -1:
 		return
-	
-	if !node.is_ready():
-		$BonkPlayer.play()
-		return
-	
-	var result = expand(node)
 
-	player_clicked.emit(node, result)
+	player_clicked.emit(node)
 		

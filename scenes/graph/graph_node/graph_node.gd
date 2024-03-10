@@ -2,9 +2,7 @@ extends Node2D
 
 var player: Node
 
-var resource_type = -1
-var resource_value = 0
-var modifier_cb: Callable
+var resource_type = 'NOT_SET'
 
 var ruby_viewport: SubViewport
 var coin_viewport: SubViewport
@@ -58,11 +56,11 @@ func update_visuals():
 		
 	$Circle.material.set_shader_parameter("color", current_color)
 		
-	if resource_type == 0:
+	if resource_type == "coin":
 		$ResourceSprite.texture = coin_viewport.get_texture()
-	elif resource_type == 1:
+	elif resource_type == "ruby":
 		$ResourceSprite.texture = ruby_viewport.get_texture()
-	elif resource_type == 2:
+	elif resource_type == "juice":
 		$ResourceSprite.texture = juice_viewport.get_texture()
 
 

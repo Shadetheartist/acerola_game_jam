@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcs3qhell8mr1"]
+
+[ext_resource type="Script" path="res://scenes/player/resource_collection/resource_collection.gd" id="1_tlobv"]
+
+[node name="ResourceCollection" type="Node"]
+script = ExtResource("1_tlobv")

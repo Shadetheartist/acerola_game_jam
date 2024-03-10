@@ -1,7 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwq0wdmjnlunm"]
+[gd_scene load_steps=8 format=3 uid="uid://cwq0wdmjnlunm"]
 
 [ext_resource type="Script" path="res://scenes/opponent_view/opponent_view.gd" id="1_2vwcu"]
 [ext_resource type="PackedScene" uid="uid://clp7eg5y3y3v0" path="res://assets/opponent.blend" id="1_j1qyr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4i46p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_faidi"]
+radius = 0.12434
+height = 1.23892
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5tw1n"]
+size = Vector3(1.46777, 1.5658, 0.922791)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4h856"]
+size = Vector3(1.8073, 2.1116, 0.322845)
 
 [sub_resource type="Environment" id="Environment_5syrh"]
 background_energy_multiplier = 0.0
@@ -12,6 +24,24 @@ script = ExtResource("1_2vwcu")
 
 [node name="opponent" parent="." instance=ExtResource("1_j1qyr")]
 transform = Transform3D(-0.444714, 0, -0.895673, 0, 1, 0, 0.895673, 0, -0.444714, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="opponent"]
+transform = Transform3D(-0.444714, 0, 0.895672, 0, 1, 0, -0.895672, 0, -0.444714, -0.078627, 2.79161, 0.0390394)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="opponent/StaticBody3D"]
+shape = SubResource("SphereShape3D_4i46p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="opponent/StaticBody3D"]
+transform = Transform3D(0.911065, -0.377348, 0.166037, -0.106701, -0.604855, -0.789155, 0.398214, 0.701255, -0.591326, -0.203367, -0.132814, 0.49567)
+shape = SubResource("CapsuleShape3D_faidi")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="opponent/StaticBody3D"]
+transform = Transform3D(0.874207, 0.198978, -0.442911, -0.0196732, 0.925943, 0.37715, 0.485155, -0.320994, 0.81338, 0.050565, -1.24659, 0.05937)
+shape = SubResource("BoxShape3D_5tw1n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="opponent/StaticBody3D"]
+transform = Transform3D(0.874084, 0.0205361, -0.48534, -0.0194283, 0.999784, 0.00731385, 0.485386, 0.00303643, 0.874295, 0.383344, -1.07706, -0.713689)
+shape = SubResource("BoxShape3D_4h856")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.880063, -0.474857, 0, 0.474857, 0.880063, -0.00566387, -0.189969, 3.92811)
@@ -37,3 +67,9 @@ omni_range = 6.70745
 
 [node name="LookTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59064, 0)
+
+[node name="JuiceSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85057, 4.40206, 0.5084)
+
+[node name="JuiceTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183988, 2.84908, 0.0848165)

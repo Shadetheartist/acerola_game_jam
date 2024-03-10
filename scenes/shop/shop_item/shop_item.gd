@@ -3,6 +3,7 @@ extends HBoxContainer
 signal clicked
 
 @export var label = 'Item'
+@export var description = 'Description.'
 @export var image = Texture2D
 @export var image_hover = Texture2D
 @export var image_click = Texture2D
@@ -12,6 +13,7 @@ signal clicked
 @export var cost_juice = 0
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update()
@@ -19,6 +21,7 @@ func _ready():
 	$TextureButton.texture_normal = image
 	$TextureButton.texture_hover = image_hover
 	$TextureButton.texture_pressed = image_click
+	$VBoxContainer/Description.text = description
 
 
 func update():
@@ -34,3 +37,5 @@ func _process(delta):
 
 func _on_texture_button_pressed():
 	clicked.emit([cost_coin, cost_ruby, cost_juice])
+	
+
