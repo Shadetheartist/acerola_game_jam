@@ -17,8 +17,8 @@ var children = []
 var is_current = false
 var is_old = false
 
-var ready_after = 1
-var ready_t = ready_after
+@onready var ready_after = ready_after_calc()
+@onready var ready_t = ready_after
 
 var ready_color = Vector4(0,0.69,0,1)
 var disabled_color = Vector4(0,0,0,0.33)
@@ -64,9 +64,15 @@ func update_visuals():
 		$ResourceSprite.texture = juice_viewport.get_texture()
 
 
+func ready_after_calc():
+	if !player:
+		return 1
+		
+	return max(0.15, 1 - (player.ascension_level-1) * 0.33)
+
 func set_ready_t():
 	if player:
-		ready_after = max(0.25, 1 - (player.ascension_level-1) * 0.2)
+		ready_after = ready_after_calc()
 		ready_t = ready_after
 
 func graph_updated(graph):

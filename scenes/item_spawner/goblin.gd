@@ -1,5 +1,7 @@
 extends Node3D
 
+signal bite(Node3D)
+
 @onready var initial_pos = self.position
 @onready var target_pos = self.position
 
@@ -26,3 +28,11 @@ func disable():
 func toggle_visible_after(s):
 	await get_tree().create_timer(s).timeout
 	visible = false
+	
+func start_bite_anim():
+	$AnimationPlayer.queue("bite")
+	
+func do_bite():
+	$EatPlayer.play()
+	bite.emit(self)
+	

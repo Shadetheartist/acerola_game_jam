@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyfltyck1wpxc"]
+
+[ext_resource type="Texture2D" uid="uid://o6nd42xu8g4m" path="res://assets/images/title_card.png" id="1_2rqe0"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_lmcaw"]
+[ext_resource type="PackedScene" uid="uid://ccniag1my7gqs" path="res://scenes/background_menu/background_menu.tscn" id="3_tl2jt"]
+[ext_resource type="AudioStream" uid="uid://bcnfh4dn7s4p0" path="res://assets/audio/ambience.wav" id="4_f4i8u"]
+[ext_resource type="AudioStream" uid="uid://bkmwmpf1sxv57" path="res://assets/audio/goober_music.wav" id="5_hnu3k"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_daois"]
+viewport_path = NodePath("SubViewport")
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_lmcaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+z_index = 1
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_2rqe0")
+
+[node name="Play" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+
+[node name="BackgroundMenu" parent="SubViewport" instance=ExtResource("3_tl2jt")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_daois")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_f4i8u")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hnu3k")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

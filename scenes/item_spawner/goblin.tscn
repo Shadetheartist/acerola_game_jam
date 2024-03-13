@@ -1,9 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0qwar2xwqtrj"]
+[gd_scene load_steps=10 format=3 uid="uid://c0qwar2xwqtrj"]
 
 [ext_resource type="Script" path="res://scenes/item_spawner/goblin.gd" id="1_l4tu3"]
 [ext_resource type="PackedScene" uid="uid://dymcsndq8uqxy" path="res://assets/goblin_head.glb" id="1_qnkyg"]
+[ext_resource type="AudioStream" uid="uid://btkbkqyfhbr8t" path="res://assets/audio/eat/eat_1.wav" id="3_rlbuf"]
+[ext_resource type="AudioStream" uid="uid://byemewwu37s6x" path="res://assets/audio/eat/eat_2.wav" id="4_qqe3j"]
+[ext_resource type="AudioStream" uid="uid://nrosoohgvfgx" path="res://assets/audio/eat/eat_3.wav" id="5_h6isn"]
+[ext_resource type="AudioStream" uid="uid://b1w4t2xobvcdb" path="res://assets/audio/eat/eat_4.wav" id="6_yo42t"]
+
+[sub_resource type="Animation" id="Animation_sig8j"]
+resource_name = "bite"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0, 0.340832, 0.320509, 0.6, 1, 0, 0.340832, 0.917524, 0.8, 1, 0, 0.340832, 0.320509, 1, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_head")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, -0.243056, 0, 0, 0.970012, 0.6, 1, 0.174336, 0, 0, 0.984686, 0.8, 1, -0.243056, 0, 0, 0.970012, 1, 1, 0, 0, 0, 1)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"do_bite"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2odc"]
+_data = {
+"bite": SubResource("Animation_sig8j")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y2mks"]
+random_pitch = 1.03
+streams_count = 4
+stream_0/stream = ExtResource("3_rlbuf")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_qqe3j")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_h6isn")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_yo42t")
+stream_3/weight = 1.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_l4tu3")
 
 [node name="goblin_head" parent="." instance=ExtResource("1_qnkyg")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q2odc")
+}
+
+[node name="EatPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_y2mks")

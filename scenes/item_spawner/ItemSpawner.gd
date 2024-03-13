@@ -1,5 +1,8 @@
 extends Node3D
 
+
+signal goblin_bite
+
 var coin_scene = preload("res://scenes/resources/coin/item/coin_item.tscn")
 var ruby_scene = preload("res://scenes/resources/ruby/item/ruby_item.tscn")
 var juice_scene = preload("res://scenes/resources/juice/item/juice_item.tscn")
@@ -14,6 +17,7 @@ var spawn_queue = []
 
 @export var goblin_count = 0
 var max_goblins = 3
+var goblin_cds = [0.0, 0.0, 0.0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,9 +30,35 @@ func _process(delta):
 	t += delta
 	if t > cd && spawn_queue.size() > 0:
 		var item = spawn_queue.pop_front()
-		self.get_parent().add_child.call_deferred(item)
-		get_tree().create_timer(3.0).timeout.connect(func(): if item: item.freeze = true)
+		if is_instance_valid(item):
+			self.get_parent().add_child(item)
+			freeze_node_after(item, 3.0)
 		t = 0
+	
+	# lmao, programming over a decade and i still do this shit sometimes (its faster rn)
+	if goblin_count >= 1:
+		goblin_cds[0] += delta
+		if goblin_cds[0] >= 11:
+			goblin_cds[0] = 0
+			$Goblin1.start_bite_anim()
+		
+	if goblin_count >= 2:
+		goblin_cds[1] += delta
+		if goblin_cds[1] >= 11:
+			goblin_cds[1] = 0
+			$Goblin2.start_bite_anim()
+		
+	if goblin_count >= 3:
+		goblin_cds[2] += delta
+		if goblin_cds[2] >= 11:
+			goblin_cds[2] = 0
+			$Goblin3.start_bite_anim()
+
+
+func freeze_node_after(node, s):
+	await get_tree().create_timer(s).timeout
+	if is_instance_valid(node):
+		node.freeze = true
 
 func spawn_by_resource_type(resource_type):
 	if resource_type == "coin":
@@ -40,6 +70,7 @@ func spawn_by_resource_type(resource_type):
 
 func spawn_item(type, scene):
 	var item = scene.instantiate()
+	item.name = type + '@' + str(randi())
 	item.position = self.position
 	item.rotation = Vector3(randi() % 3, randi() % 3, randi() % 3)
 	spawn_queue.append(item)
@@ -85,3 +116,7 @@ func add_goblin():
 		goblin_node.enable()
 	else:
 		push_error("couldn't find goblin node " + goblin_node_name)
+
+
+func _on_goblin_bite(gobbo):
+	goblin_bite.emit()

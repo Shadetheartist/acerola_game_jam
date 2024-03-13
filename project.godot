@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Abberation"
-run/main_scene="res://game.tscn"
+config/name="Selling Juice to obliterate your opponent with an ICBM"
+run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://global.gd"
 
 [display]
 

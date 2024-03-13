@@ -22,3 +22,7 @@ visible = false
 [node name="Goblin3" parent="." instance=ExtResource("3_7p4hc")]
 transform = Transform3D(0.468579, 0, 0, 0, 0.447335, 0.139492, 0, -0.139492, 0.447335, 0.845675, -4.5148, -1.92052)
 visible = false
+
+[connection signal="bite" from="Goblin1" to="." method="_on_goblin_bite"]
+[connection signal="bite" from="Goblin2" to="." method="_on_goblin_bite"]
+[connection signal="bite" from="Goblin3" to="." method="_on_goblin_bite"]

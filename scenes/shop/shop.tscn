@@ -1,11 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmmesa7n7g57y"]
+[gd_scene load_steps=22 format=3 uid="uid://cmmesa7n7g57y"]
 
 [ext_resource type="Script" path="res://scenes/shop/shop.gd" id="1_o5q6q"]
+[ext_resource type="PackedScene" uid="uid://b7mid2gv8hrp6" path="res://scenes/resource_bars/resource_bars.tscn" id="2_4bbci"]
 [ext_resource type="PackedScene" uid="uid://bdm5jwm47d1y7" path="res://scenes/shop/shop_item/shop_item.tscn" id="2_axhwf"]
-[ext_resource type="Texture2D" uid="uid://dfgjc4aocuv8k" path="res://assets/images/coin.png" id="5_rflmd"]
-[ext_resource type="Texture2D" uid="uid://c625v37m48i67" path="res://assets/images/ruby.png" id="6_2p448"]
 [ext_resource type="Texture2D" uid="uid://cscflrxnkofpt" path="res://assets/images/ascend.jpg" id="6_daqp4"]
-[ext_resource type="Texture2D" uid="uid://ceev1dhj6vu4e" path="res://assets/images/juice.png" id="7_8pokb"]
 [ext_resource type="Texture2D" uid="uid://cdfl08buu1mvf" path="res://assets/images/ascend_hover.jpg" id="7_gdvgt"]
 [ext_resource type="Texture2D" uid="uid://drkunk3i566eb" path="res://assets/images/ascend_click.jpg" id="8_ywu6w"]
 [ext_resource type="Texture2D" uid="uid://c0ob2ohkje164" path="res://assets/images/goblin.jpg" id="9_oso6u"]
@@ -24,24 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://yxickixemuha" path="res://assets/images/yeet_hover.jpg" id="22_srkcw"]
 [ext_resource type="Texture2D" uid="uid://brxrjk5p0qff0" path="res://assets/images/yeet_click.jpg" id="23_n0btr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv76q"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fwat"]
-bg_color = Color(1, 0.846802, 0.0195312, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tidgv"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmvws"]
-bg_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gox60"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l36pc"]
-bg_color = Color(0, 0.839216, 0, 1)
-
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_o5q6q")
 
@@ -55,91 +35,8 @@ clip_contents = true
 offset_right = 1201.0
 offset_bottom = 348.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="ResourceBars" parent="HBoxContainer" instance=ExtResource("2_4bbci")]
 layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="CoinProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(30, 300)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_gv76q")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1fwat")
-value = 30.0
-fill_mode = 3
-show_percentage = false
-
-[node name="CoinNum" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/CoinProgressBar"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "N"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_rflmd")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="RubyProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(30, 300)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_tidgv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bmvws")
-value = 30.0
-fill_mode = 3
-show_percentage = false
-
-[node name="RubyNum" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/RubyProgressBar"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "N"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("6_2p448")
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="JuiceProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(30, 300)
-layout_mode = 2
-theme_override_constants/outline_size = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_gox60")
-theme_override_styles/fill = SubResource("StyleBoxFlat_l36pc")
-value = 30.0
-fill_mode = 3
-show_percentage = false
-
-[node name="JuiceNum" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3/JuiceProgressBar"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "N"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-texture = ExtResource("7_8pokb")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2

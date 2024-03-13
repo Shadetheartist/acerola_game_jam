@@ -18,6 +18,7 @@ signal clicked
 func _ready():
 	update()
 	
+	
 	$TextureButton.texture_normal = image
 	$TextureButton.texture_hover = image_hover
 	$TextureButton.texture_pressed = image_click
@@ -33,6 +34,10 @@ func update():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+	
+func disable():
+	$TextureButton.disabled = true
 
 
 func _on_texture_button_pressed():

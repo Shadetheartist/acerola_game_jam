@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://de8olvv7fv6ib"]
+
+[ext_resource type="PackedScene" uid="uid://do8xod4gfxfaq" path="res://assets/icbm.glb" id="1_nkfqo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lab0h"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_xiu81"]
+material = SubResource("StandardMaterial3D_lab0h")
+size = Vector3(3, 3, 3)
+
+[sub_resource type="Curve" id="Curve_3ckij"]
+max_value = 100.0
+_data = [Vector2(0.398305, 0), 0.0, 0.0, 0, 0, Vector2(0.997175, 69.9339), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_i0drc"]
+_data = [Vector2(0, 0.119493), 0.0, 0.0, 0, 0, Vector2(0.991525, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e8pld"]
+colors = PackedColorArray(1, 1, 1, 1, 0.207843, 0.207843, 0.207843, 0)
+
+[node name="ICBM" type="Node3D"]
+
+[node name="icbm_model" parent="." instance=ExtResource("1_nkfqo")]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="icbm_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.5473, 0)
+amount = 256
+lifetime = 1.92
+mesh = SubResource("BoxMesh_xiu81")
+direction = Vector3(0, -1, 0)
+spread = 6.74
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 160.42
+initial_velocity_max = 235.3
+damping_max = 2.674
+damping_curve = SubResource("Curve_3ckij")
+scale_amount_min = 6.35
+scale_amount_max = 6.35
+scale_amount_curve = SubResource("Curve_i0drc")
+color_ramp = SubResource("Gradient_e8pld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="icbm_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.4665, 0.0194864)
+light_energy = 13.933
+light_size = 1.0
+omni_range = 11.8192
+
+[node name="SpotLight3D" type="SpotLight3D" parent="icbm_model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -23.3501, 0)
+light_energy = 100.0
+spot_range = 474.434
+spot_angle = 26.1633

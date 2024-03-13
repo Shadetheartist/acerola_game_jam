@@ -165,7 +165,7 @@ func shared_parent(nodes):
 
 	
 func _on_node_clicked(node):
-	if player.id != 0:
+	if !player.is_player:
 		return
 		
 	if self.current_nodes.find(node) == -1:

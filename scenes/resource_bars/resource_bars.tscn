@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7mid2gv8hrp6"]
+
+[ext_resource type="Script" path="res://scenes/resource_bars/resource_bars.gd" id="1_gf68d"]
+[ext_resource type="Texture2D" uid="uid://dfgjc4aocuv8k" path="res://assets/images/coin.png" id="1_x2iuw"]
+[ext_resource type="Texture2D" uid="uid://c625v37m48i67" path="res://assets/images/ruby.png" id="2_v5sku"]
+[ext_resource type="Texture2D" uid="uid://ceev1dhj6vu4e" path="res://assets/images/juice.png" id="3_n7fwm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv76q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fwat"]
+bg_color = Color(1, 0.846802, 0.0195312, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tidgv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmvws"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gox60"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l36pc"]
+bg_color = Color(0, 0.839216, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer"]
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_gf68d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CoinProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 300)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gv76q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1fwat")
+value = 30.0
+fill_mode = 3
+show_percentage = false
+
+[node name="CoinNum" type="Label" parent="HBoxContainer/VBoxContainer/CoinProgressBar"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_x2iuw")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="RubyProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(30, 300)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_tidgv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bmvws")
+value = 30.0
+fill_mode = 3
+show_percentage = false
+
+[node name="RubyNum" type="Label" parent="HBoxContainer/VBoxContainer2/RubyProgressBar"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_v5sku")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="JuiceProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(30, 300)
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_gox60")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l36pc")
+value = 30.0
+fill_mode = 3
+show_percentage = false
+
+[node name="JuiceNum" type="Label" parent="HBoxContainer/VBoxContainer3/JuiceProgressBar"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("3_n7fwm")

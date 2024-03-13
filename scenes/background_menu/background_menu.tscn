@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccniag1my7gqs"]
+
+[ext_resource type="Script" path="res://scenes/background_menu/background_menu.gd" id="1_5bkn2"]
+[ext_resource type="Environment" uid="uid://ow87xj0hwj65" path="res://scenes/background_menu/world_env.tres" id="2_xuht4"]
+[ext_resource type="PackedScene" uid="uid://xwocnbi4w088" path="res://assets/land.blend" id="2_y08am"]
+[ext_resource type="PackedScene" uid="uid://clp7eg5y3y3v0" path="res://assets/opponent.blend" id="3_rn5my"]
+[ext_resource type="PackedScene" uid="uid://di0ll8apy56y3" path="res://assets/you.glb" id="4_t05li"]
+[ext_resource type="PackedScene" uid="uid://cdgwvyfvgyrhf" path="res://assets/can.glb" id="6_6104l"]
+[ext_resource type="PackedScene" uid="uid://do8xod4gfxfaq" path="res://assets/icbm.glb" id="7_cjacl"]
+
+[sub_resource type="Animation" id="Animation_6a7jt"]
+resource_name = "ready"
+length = 6.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("icbm:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-21.4716, -0.25, 0, 0.25, 0, -11.1742, -2.8, -0.381388, 0.25, 0),
+"times": PackedFloat32Array(0, 5.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2j4dg"]
+_data = {
+"ready": SubResource("Animation_6a7jt")
+}
+
+[node name="BackgroundMenu" type="Node3D"]
+script = ExtResource("1_5bkn2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_xuht4")
+
+[node name="land" parent="." instance=ExtResource("2_y08am")]
+
+[node name="opponent" parent="." instance=ExtResource("3_rn5my")]
+transform = Transform3D(0.211581, 0, -0.977361, 0, 1, 0, 0.977361, 0, 0.211581, -0.260205, 0.102268, -7.50702)
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(0.848612, 0, 0.529016, 0, 1, 0, -0.529016, 0, 0.848612, 0.102423, 2.74408, -2.13055)
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3411e-07, 0.0104208, 8.1561)
+environment = ExtResource("2_xuht4")
+
+[node name="you" parent="." instance=ExtResource("4_t05li")]
+transform = Transform3D(0.078539, 0, 0.312608, 0, 0.322323, 0, -0.312608, 0, 0.078539, -1.76975, 1.45767, 1.92854)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.74809, 7.25414, -1.93042)
+light_energy = 14.487
+light_size = 0.259
+spot_range = 11.1176
+spot_angle = 49.3611
+
+[node name="can" parent="." instance=ExtResource("6_6104l")]
+transform = Transform3D(0.112477, 0, -0.298907, 0.0862689, 0.305779, 0.0324624, 0.286187, -0.0921744, 0.107691, 0, 1.06193, -1.87658)
+
+[node name="icbm" parent="." instance=ExtResource("7_cjacl")]
+transform = Transform3D(-0.220484, 0, -0.760743, 0, 0.792049, 0, 0.760743, 0, -0.220484, 1.38729, -22.2799, 0.159197)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2j4dg")
+}
